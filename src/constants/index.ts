@@ -3,6 +3,11 @@ import { AbstractConnector } from '@web3-react/abstract-connector'
 
 import { fortmatic, injected, portis, walletconnect, walletlink } from '../connectors'
 
+import ryoshi from '../assets/images/shiba-token/RYOSHI.png'
+import shibking from '../assets/images/shiba-token/SHIBKING.png'
+import shiboshi from '../assets/images/shiba-token/Shiboshi.png'
+import wbones from '../assets/images/shiba-token/bones.png'
+
 export const ROUTER_ADDRESS = '0x7a250d5630B4cF539739dF2C5dAcb4c659F2488D'
 
 // a list of tokens by chain
@@ -22,7 +27,8 @@ const WETH_ONLY: ChainTokenList = {
   [ChainId.ROPSTEN]: [WETH[ChainId.ROPSTEN]],
   [ChainId.RINKEBY]: [WETH[ChainId.RINKEBY]],
   [ChainId.GÖRLI]: [WETH[ChainId.GÖRLI]],
-  [ChainId.KOVAN]: [WETH[ChainId.KOVAN]]
+  [ChainId.KOVAN]: [WETH[ChainId.KOVAN]],
+  [ChainId.SHIBARIUM]: [WETH[ChainId.SHIBARIUM]]
 }
 
 // used to construct intermediary pairs for trading
@@ -41,11 +47,51 @@ export const CUSTOM_BASES: { [chainId in ChainId]?: { [tokenAddress: string]: To
   }
 }
 
+// SHIBARIUM
+export const RYOSHI = new Token(ChainId.MAINNET, '0x3751D1A5e0CdDD08BF91A8e115E44BA5359e52B1', 18, 'RYOSHI', 'RYOSHI')
+
+export const SHIBKING = new Token(
+  ChainId.MAINNET,
+  '0x236DCf3Ee880796bF58D0978D53772a4D5dC6DB6',
+  18,
+  'SHIBKING',
+  'SHIBKING'
+)
+export const Shiboshi = new Token(
+  ChainId.MAINNET,
+  '0xC0deBA91b9f5550B927BD4E4Ff5179148450C457',
+  18,
+  'Shiboshi',
+  'Shiboshi'
+)
+export const WBONES = new Token(ChainId.MAINNET, '0x6c19A35875217b134e963ca9e61b005b855CAD21', 18, 'WBONES', 'WBONES')
+
 // used for display in the default list when adding liquidity
 export const SUGGESTED_BASES: ChainTokenList = {
   ...WETH_ONLY,
-  [ChainId.MAINNET]: [...WETH_ONLY[ChainId.MAINNET], DAI, USDC] // sửa chỗ này thành recommend token
+  // [ChainId.MAINNET]: [...WETH_ONLY[ChainId.MAINNET], DAI, USDC] // sửa chỗ này thành recommend token
+  [ChainId.MAINNET]: [...WETH_ONLY[ChainId.MAINNET], RYOSHI, SHIBKING, Shiboshi, WBONES]
 }
+
+export const LOGO_SHIBARIUM = {
+  ryoshi,
+  shibking,
+  shiboshi,
+  wbones
+}
+
+// export const SUGGESTED_BASES: ChainTokenList = {
+//   ...WETH_ONLY,
+//   [ChainId.MAINNET]: [
+//     {
+//       address: '0x3751D1A5e0CdDD08BF91A8e115E44BA5359e52B1',
+//       chainId: '109',
+//       decimals: 18,
+//       name: 'Wrapped Ether',
+//       symbol: 'WETH'
+//     }
+//   ]
+// }
 
 // used to construct the list of all pairs we consider by default in the frontend
 export const BASES_TO_TRACK_LIQUIDITY_FOR: ChainTokenList = {

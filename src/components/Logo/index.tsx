@@ -5,7 +5,7 @@ import { ImageProps } from 'rebass'
 const BAD_SRCS: { [tokenAddress: string]: true } = {}
 
 export interface LogoProps extends Pick<ImageProps, 'style' | 'alt' | 'className'> {
-  srcs: string[]
+  srcs: string[] | string
 }
 
 /**
@@ -14,7 +14,9 @@ export interface LogoProps extends Pick<ImageProps, 'style' | 'alt' | 'className
 export default function Logo({ srcs, alt, ...rest }: LogoProps) {
   const [, refresh] = useState<number>(0)
 
-  const src: string | undefined = srcs.find(src => !BAD_SRCS[src])
+  // const src: string | undefined = srcs.find(src => !BAD_SRCS[src])
+  const src = srcs
+  //  string | undefined = srcs.find(src => !BAD_SRCS[src])
 
   if (src) {
     return (
